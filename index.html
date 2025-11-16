@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Turasuna.id - Turats Academy: Platform pengajaran al-Qur'an dan ilmu keislaman klasik & kontemporer, daring & luring. Kurikulum berstandar Arab, pengajar alumni Al-Azhar." />
+  <title>Turasuna.id — Turats Academy</title>
+
+  <!-- Primary theme colors (ambil dari logo) -->
+  <style>
+    :root{
+      --green-900: #0f4d36; /* deep */
+      --green-700: #1b6b48;
+      --green-500: #3b8a5f;
+      --green-400: #66a96b; /* lighter */
+      --bg: #fbfbfb;
+      --muted: #7a7a7a;
+      --max-width: 1100px;
+      --radius: 12px;
+      --glass: rgba(255,255,255,0.6);
+      --content-padding: 20px;
+      --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      --font-serif: 'Merriweather', serif;
+    }
+
+    /* Reset and base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--font-sans);
+      background:linear-gradient(180deg, #ffffff 0%, #fbfcfb 35%, #f7f9f7 100%);
+      color:var(--green-900);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      letter-spacing:0.1px;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
+
+    .container{width:calc(100% - 40px);max-width:var(--max-width);margin:0 auto;padding:var(--content-padding)}
+
+    /* Header */
+    header.site-header{
+      position:sticky;top:0;z-index:60;background:linear-gradient(180deg, rgba(201, 235, 214, 0.2), rgba(201, 235, 214, 0.65));backdrop-filter: blur(4px);
+      border-bottom:1px solid rgba(15,77,54,0.05);
+    }
+    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:56px;height:56px;object-fit:contain}
+    .brand h1{font-size:18px;margin:0;color:var(--green-900);font-weight:700}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+
+    nav.main-nav{display:flex;align-items:center;gap:18px}
+    nav.main-nav a{font-weight:600;font-size:14px;padding:8px 10px;border-radius:8px}
+    nav.main-nav a:hover{background:linear-gradient(90deg,var(--green-400),var(--green-700));color:white}
+
+    .cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,var(--green-700),var(--green-500));color:white;padding:10px 14px;border-radius:10px;font-weight:700}
+    .cta:active{transform:translateY(1px)}
+
+    /* Mobile menu */
+    .mobile-toggle{display:none;background:transparent;border:0;padding:8px;border-radius:10px}
+    .mobile-toggle svg{width:26px;height:26px}
+
+    /* Hero */
+    .hero{padding:44px 0 20px;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+    .hero-left h2{font-size:28px;margin:0 0 12px;color:var(--green-900);line-height:1.05}
+    .hero-left p.lead{margin:0 0 18px;color:#445;max-width:60ch}
+    .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+    .btn-outline{border:2px solid var(--green-700);padding:10px 14px;border-radius:10px;font-weight:700}
+
+    .feature-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}
+    .card{background:linear-gradient(180deg, rgba(27,107,72,0.05), rgba(59,138,95,0.3));padding:12px;border-radius:12px;border:1px solid rgba(15,77,54,0.05)}
+    .card h4{margin:0 0 6px;font-size:15px}
+    .card p{margin:0;color:#4d4d4d;font-size:13px}
+
+    /* Hero right (logo area) */
+    .hero-right{display:flex;flex-direction:column;align-items:center;gap:8px}
+    .logo-plate{width:100%;max-width:380px;padding:18px;border-radius:14px;background:linear-gradient(0deg, rgba(59,138,95,0.08), rgba(27,107,72,0.03));display:flex;justify-content:center;align-items:center}
+    .logo-plate img{width:88%;height:auto}
+
+    /* Sections */
+    section{padding:36px 0}
+    section h3{font-size:20px;margin:0 0 8px;color:var(--green-900)}
+    .muted{color:var(--muted)}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .box{background:white;padding:18px;border-radius:12px;box-shadow:0 6px 20px rgba(15,77,54,0.03);border:1px solid rgba(15,77,54,0.03)}
+
+    /* Curriculum list */
+    .curriculum ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+    .curriculum li{padding:10px;border-radius:10px;background:linear-gradient(90deg, rgba(59,138,95,0.03), rgba(27,107,72,0.01));border:1px dashed rgba(15,77,54,0.04)}
+
+    /* FAQ / Accordion */
+    .accordion .item {
+      background-color: #eefff5;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(15, 77, 54, 0.1);
+    }
+    .accordion button{width:100%;text-align:left;padding:12px;background:transparent;border:0;font-weight:700}
+    .accordion .panel{padding:12px 16px;border-top:1px solid rgba(15,77,54,0.02);display:none;background:linear-gradient(180deg, #fff, #fbfffb)}
+
+    /* Teachers */
+    .teacher{display:flex;gap:12px;align-items:center}
+    .teacher img{width:72px;height:72px;border-radius:12px;object-fit:cover}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+    form{display:flex;flex-direction:column;gap:10px}
+    input,textarea,select{padding:12px;border-radius:10px;border:1px solid rgba(15,77,54,0.08);font-size:14px}
+    button[type=submit]{background:linear-gradient(90deg,var(--green-700),var(--green-500));color:white;padding:12px;border-radius:10px;border:0;font-weight:700}
+
+    /* SECTION HUBUNGI — gambar besar menempel ke footer */
+    .maskot-section {
+      padding: 0;
+      margin: 0;
+      margin-top: 20px;
+      position: relative;
+    }
+
+    .maskot-image-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .maskot-image {
+      width: 100%;
+      max-width: 800px; /* batas maksimal di desktop */
+      display: block;
+      margin: 0 auto;
+      margin-bottom: -20px;  /* overlap ke footer */
+      margin-left: 130px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Responsif HP */
+    @media (max-width: 768px) {
+      .maskot-image {
+        max-width: 100%;
+        margin-bottom: -20px; /* overlap kecil di HP */
+        margin-left: 0;
+      }
+    }
+
+
+    .site-footer {
+      background:#0f4d36;
+      color:#eee;
+      padding:40px 20px 20px;
+      margin-top:40px;
+      position: relative;
+      z-index: 1;
+      margin-top: 0;
+      padding-top: 50px; /* memberi ruang untuk overlap */
+    }
+
+    .footer-grid {
+      display:grid;
+      gap:28px;
+      grid-template-columns:1fr;
+    }
+
+    /* Desktop */
+    @media (min-width: 768px) {
+      .footer-grid {
+        grid-template-columns:repeat(3,1fr);
+      }
+    }
+
+    .footer-col h4 {
+      font-size:1.1rem;
+      margin-bottom:10px;
+      color:#fff;
+    }
+
+    .footer-links {
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+
+    .footer-links li {
+      margin-bottom:8px;
+    }
+
+    .footer-links a {
+      color:#ccc;
+      text-decoration:none;
+      transition:0.2s;
+    }
+
+    .footer-links a:hover {
+      color:#fff;
+    }
+
+    .footer-bottom {
+      text-align:center;
+      margin-top:24px;
+      border-top:1px solid #333;
+      padding-top:12px;
+      color:#aaa;
+    }
+
+    .grid-about{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .grid-pengajar{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+      gap:16px;
+      justify-items:center; /* Biar jika baris tidak penuh, item berada di tengah */
+      
+    }
+
+    /* Desktop: paksa 4 kolom */
+    @media (min-width:1024px){
+      .grid-pengajar{
+        grid-template-columns:repeat(4, 1fr);
+      }
+    }
+
+    /* Tablet */
+    @media (max-width:1023px){
+      .grid-pengajar{
+        grid-template-columns:repeat(2, 1fr);
+      }
+    }
+
+    /* HP */
+    @media (max-width:520px){
+      .grid-pengajar{
+        grid-template-columns:1fr;
+      }
+    }
+
+
+    @media (max-width:900px){
+      .grid-about{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media (max-width:520px){
+      .grid-about{
+        grid-template-columns:1fr;
+      }
+    }
+
+
+    /* small screens */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .hero-right{order:-1}
+      .grid-3{grid-template-columns:repeat(2,1fr)}
+      nav.main-nav{display:none}
+      .mobile-toggle{display:inline-flex}
+    }
+
+    @media (max-width:520px){
+      .grid-3{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .brand img{width:46px;height:46px}
+      .brand h1{font-size:16px}
+    }
+
+    /* small micro interactions */
+    .fade-in{opacity:0;transform:translateY(10px);transition:all 560ms cubic-bezier(.2,.9,.3,1)}
+    .fade-in.visible{opacity:1;transform:none}
+
+    /* Utility */
+    .center{text-align:center}
+    .small{font-size:13px;color:var(--muted)}
+  </style>
+
+  <!-- Google fonts (progressive enhancement) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <!-- Ganti src ke nama file logo yang tersedia (misal: turost logo.png) -->
+        <img src="asset/logo.png" alt="Turots Academy Logo" id="site-logo">
+        <div>
+          <h1>Turats Academy</h1>
+          <p class="small">Pengajaran al-Qur'an & Ilmu Keislaman</p>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Primary">
+        <a href="#about">Tentang</a>
+        <a href="#kurikulum">Kurikulum</a>
+        <a href="#pengajar">Pengajar</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="cta">Daftar Sekarang</a>
+      </nav>
+
+      <button class="mobile-toggle" aria-label="Buka menu" id="mobileToggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <!-- mobile menu placeholder -->
+    <div id="mobileMenu" style="display:none;padding:12px 20px;border-top:1px solid rgba(15,77,54,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.9));">
+      <div style="display:flex;flex-direction:column;gap:8px;max-width:420px;margin:0 auto">
+        <a href="#about">Tentang</a>
+        <a href="#kurikulum">Kurikulum</a>
+        <a href="#pengajar">Pengajar</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="cta">Daftar Sekarang</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-left">
+        <h2 class="fade-in">Turasuna.id — Turats Academy
+        </h2>
+        <p class="lead fade-in">Platform pengajaran al-Qur'an dan ilmu-ilmu keislaman klasik & kontemporer yang disusun berstandar Arab, disampaikan oleh pengajar alumni Al-Azhar — interaktif, mudah dipahami, dan terstruktur untuk pelajar Asia Tenggara.</p>
+
+        <div class="hero-cta fade-in">
+          <a class="cta" href="#contact">Daftar Kelas</a>
+          <a class="btn-outline" href="#kurikulum">Lihat Kurikulum</a>
+        </div>
+
+        <div class="feature-cards fade-in" style="margin-top:14px">
+          <div class="card">
+            <h4>Pengajaran Bersanad</h4>
+            <p>Menjaga sanad dan rujukan kitab-kitab muktabar sebagai pondasi pembelajaran.</p>
+          </div>
+          <div class="card">
+            <h4>Pengajar Al-Azhar</h4>
+            <p>Pengajar adalah mahasiswa S2/Alumni Al-Azhar Kairo berkompeten dan berpengalaman.</p>
+          </div>
+          <div class="card">
+            <h4>Kurikulum Arab-Standar</h4>
+            <p>Kurikulum berbasis nahwu, sharf, ushul fiqh, dan kajian kitab klasik hingga kontemporer.</p>
+          </div>
+          <div class="card">
+            <h4>Hybrid: Daring & Luring</h4>
+            <p>Sesi online untuk internasional & pertemuan luring berkala untuk peserta Mesir/sekitar.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="hero-right container">
+        <div class="logo-plate fade-in" role="img" aria-label="Logo Turats Academy">
+          <img src="asset/logo.png" alt="Turots Academy Logo Large">
+        </div>
+
+        <div class="box center" style="margin-top:10px">
+          <strong>Orientasi Kami</strong>
+          <p class="small" style="margin-top:8px">Berkontribusi menyebarkan nilai positif, membumikan risalah wasathiyyah, dan memberdayakan potensi intelektual alumni Al-Azhar untuk masyarakat Indonesia.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="container">
+      <h3>Apa itu Turats Academy?</h3>
+      <p class="muted">Turats Academy adalah sebuah platform pengajaran al-Qur'an dan ilmu-ilmu keislaman klasik dan kontemporer via online maupun offline. Menyuguhkan kurikulum pembelajaran berstandar Arab dan berpegang pada kitab-kitab yang muktabar.</p>
+
+      <div class="grid-about" style="margin-top:16px">
+        <div class="box fade-in">
+          <h4>Karakteristik</h4>
+          <ul class="small" style="margin-top:8px">
+            <li>Berlandaskan pada nilai-nilai keislaman yang moderat dan aktual.</li>
+            <li>Memiliki tenaga pengajar merupakan mahasiswa S2 Universitas Al-Azhar.</li>
+            <li>Menyuguhkan kurikulum pembelajaran yang bermanhaj.</li>
+          </ul>
+        </div>
+
+        <div class="box fade-in">
+          <h4>Visi</h4>
+          <p class="small">Mewujudkan platform pendidikan yang mampu mengintegrasikan keilmuan Islam klasik dan kontemporer.</p>
+        </div>
+
+        <div class="box fade-in">
+          <h4>Misi</h4>
+          <ol class="small" style="margin-top:8px">
+            <li>Menjadi wadah untuk meningkatkan serta mengaktualisasikan keilmuan wawasan keislaman melalui pembelajaran, pelatihan ataupun seminar.</li>
+            <li>Menerapkan sistem pengajaran yang menarik, interaktif dan mudah dipahami.</li>
+            <li>Mengadakan kajian kitab turats berkala secara daring maupun luring.</li>
+            <li>Memberikan bimbingan belajar bagi pelajar-pelajar Asia Tenggara di Mesir.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="kurikulum" class="container curriculum">
+      <h3>Kurikulum & Program</h3>
+      <p class="muted">Program disusun dalam beberapa jalur: Tajwid & Tilawah, Ilmu Tajwid Praktis, Tafsir Tematik, Ushul Fiqh, Nahwu-Sarf, Hadis & Metodologi, serta Khatabah & Dakwah.</p>
+
+      <div style="margin-top:12px" class="grid-3">
+        <div class="box fade-in">
+          <h4>Jalur Al-Qur'an</h4>
+          <ul>
+            <li>Program Tajwid Lengkap (tingkat dasar sampai hafalan)</li>
+            <li>Kelas Tilawah dan Muraja'ah Sanad</li>
+            <li>Kajian Tafsir Tematik (topikal sesuai kebutuhan)</li>
+          </ul>
+        </div>
+        <div class="box fade-in">
+          <h4>Ilmu Ushul & Fiqh</h4>
+          <ul>
+            <li>Pengenalan Ushul Fiqh</li>
+            <li>Kajian Kitab Mukhtasar dan Syarh</li>
+            <li>Fiqh Kontemporer & Aplikasi</li>
+          </ul>
+        </div>
+        <div class="box fade-in">
+          <h4>Bahasa Arab & Kitab Klasik</h4>
+          <ul>
+            <li>Nahwu & Sharf sistematis</li>
+            <li>Tahsin baca kitab klasik</li>
+            <li>Methodologi & sanad pengajaran</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:16px" class="box fade-in">
+        <h4>Format Pembelajaran</h4>
+        <p class="small">Setiap kelas dilengkapi dengan materi PDF, rekaman video, sesi tanya jawab (live), dan evaluasi berkala. Peserta mendapatkan sertifikat dan rekomendasi lanjutan untuk jenjang yang lebih tinggi.</p>
+      </div>
+    </section>
+
+    <section id="pengajar" class="container">
+      <h3>Tenaga Pengajar</h3>
+      <p class="muted">Pengajar kami adalah alumni/mahasiswa S2 Al-Azhar yang fokus pada kajian tradisional dan kontekstual. Komitmen pada metodologi yang jelas dan sanad yang bersih.</p>
+
+      <div class="grid-pengajar" style="margin-top:12px">
+        <div class="box teacher fade-in">
+          <img src="https://placehold.co/120x120?text=Ust+1" alt="Ustadz 1">
+          <div>
+            <strong>Ustadz Taufan, Lc., MA.</strong>
+            <p class="small" style="margin-top:6px">Hadis dan Ushul Hadis — Lulusan S2 Al Azhar</p>
+          </div>
+        </div>
+
+        <div class="box teacher fade-in">
+          <img src="https://placehold.co/120x120?text=Ust+2" alt="Ustadzah 2">
+          <div>
+            <strong>Ustadz Royhan Aziz, Lc.</strong>
+            <p class="small" style="margin-top:6px">Tajwid & Metodologi Pengajaran — Alumni Al-Azhar</p>
+          </div>
+        </div>
+
+        <div class="box teacher fade-in">
+          <img src="https://placehold.co/120x120?text=Ust+1" alt="Ustadz 3">
+          <div>
+            <strong>Ustadz Dzakky, Lc.</strong>
+            <p class="small" style="margin-top:6px">Tafsir & Ushul Fiqh — Alumni Al-Azhar</p>
+          </div>
+        </div>
+
+        <div class="box teacher fade-in">
+          <img src="https://placehold.co/120x120?text=Ust+2" alt="Ustadzah 3">
+          <div>
+            <strong>Ustadz Aliyuddin, Lc. Dipl.</strong>
+            <p class="small" style="margin-top:6px">Ilmu Kalam dan Filsafat — Mahasiswa S2 Al-Azhar</p>
+          </div>
+        </div>
+
+        <!-- Tambahkan pengajar baru di sini tanpa perlu ubah CSS -->
+      </div>
+    </section>
+
+
+    <section id="faq" class="container">
+      <h3>FAQ — Pertanyaan yang sering diajukan</h3>
+      <div class="accordion fade-in" style="margin-top:12px">
+        <div class="item">
+          <button aria-expanded="false">Apakah materi disesuaikan untuk pemula?</button>
+          <div class="panel">Ya. Setiap program memiliki jenjang dari pemula hingga mahir. Peserta akan ditempatkan berdasarkan tes awal.</div>
+        </div>
+
+        <div class="item">
+          <button aria-expanded="false">Bagaimana sistem bersanad diterapkan?</button>
+          <div class="panel">Sanad diterapkan melalui pengajaran berjenjang, pemeriksaan aliran sanad, dan bimbingan muraja'ah langsung dengan pengajar yang memiliki sanad atau referensi kitab yang jelas.</div>
+        </div>
+
+        <div class="item">
+          <button aria-expanded="false">Apakah ada pertemuan luring?</button>
+          <div class="panel">Ada. Untuk wilayah tertentu (misal Mesir/Komunitas lokal) kami adakan pertemuan intensif berkala.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="container">
+      <h3>Daftar & Kontak</h3>
+      <div class="contact-grid">
+        <div class="box fade-in">
+          <p class="small">Isi formulir pendaftaran singkat di bawah. Setelah pendaftaran, tim kami akan menghubungi Anda melalui email/WA untuk langkah selanjutnya (tes penempatan, jadwal, dan metode pembayaran).</p>
+
+          <form id="contactForm" autocomplete="on">
+            <input type="text" id="name" name="name" placeholder="Nama lengkap" required>
+            <input type="email" id="email" name="email" placeholder="Email aktif" required>
+            <input type="text" id="country" name="country" placeholder="Negara (contoh: Indonesia)" required>
+            <select id="program" name="program" required>
+              <option value="">Pilih program</option>
+              <option value="tajwid">Tajwid & Tilawah</option>
+              <option value="nahwu">Nahwu & Sharf</option>
+              <option value="fiqh">Ushul Fiqh & Fiqh</option>
+            </select>
+            <textarea id="note" name="note" rows="4" placeholder="Catatan singkat / pertanyaan (opsional)"></textarea>
+            <button type="submit">Kirim Pendaftaran</button>
+            <p id="formMsg" class="small" style="display:none;margin-top:8px"></p>
+          </form>
+        </div>
+        <section id="maskot" class="maskot-section">
+          <div class="maskot-image-wrapper">
+            <img src="asset/maskot.png" alt="Maskot" class="maskot-image">
+          </div>
+        </section>
+        </div>
+      </div>
+    </section>
+
+
+
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+
+      <!-- ABOUT -->
+      <div class="footer-col">
+        <h4>About Us</h4>
+        <p class="small">
+          Turasuna.id — Turats Academy adalah platform belajar berbasis turats
+          dengan pendekatan sanad, metodologi, dan kontekstual. Fokus pada
+          pengajaran yang berkualitas dan terarah.
+        </p>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <ul class="footer-links">
+          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#tentang">Tentang Kami</a></li>
+          <li><a href="#pengajar">Tenaga Pengajar</a></li>
+          <li><a href="#program">Program Belajar</a></li>
+        </ul>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="footer-col">
+        <h4>Kontak</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:turatsacademy@gmail.com">turatsacademy@gmail.com</a></li>
+          <li><a href="#">Instagram: @turatsacademy</a></li>
+          <li><a href="#">Facebook: Turats Academy</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p class="small">© <span id="year"></span> Turasuna.id — Semua hak dilindungi.</p>
+    </div>
+  </footer>
+
+
+  <!-- JavaScript: interaksi UI -->
+  <script>
+    // basic utilities
+    const q = s => document.querySelector(s);
+    const qa = s => document.querySelectorAll(s);
+
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // mobile menu toggle
+    const mobileToggle = q('#mobileToggle');
+    const mobileMenu = q('#mobileMenu');
+    mobileToggle && mobileToggle.addEventListener('click', ()=>{
+      const isOpen = mobileMenu.style.display !== 'none';
+      mobileMenu.style.display = isOpen ? 'none' : 'block';
+      mobileToggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    // scroll reveal simple
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); } });
+    },{threshold:0.12});
+    document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+    // Accordion
+    document.querySelectorAll('.accordion .item').forEach(item=>{
+      const btn = item.querySelector('button');
+      const panel = item.querySelector('.panel');
+      btn.addEventListener('click', ()=>{
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        // close all
+        document.querySelectorAll('.accordion .item button').forEach(b=>b.setAttribute('aria-expanded', 'false'));
+        document.querySelectorAll('.accordion .panel').forEach(p=>p.style.display='none');
+        if(!open){
+          btn.setAttribute('aria-expanded','true');
+          panel.style.display='block';
+        }
+      });
+    });
+
+    // form handling (client-side only)
+    const form = q('#contactForm');
+    form && form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      const name = q('#name').value.trim();
+      const email = q('#email').value.trim();
+      const program = q('#program').value;
+      const country = q('#country').value.trim();
+      const note = q('#note').value.trim();
+      const msg = q('#formMsg');
+
+      // validasi kosong
+      if(!name || !email || !program){
+        msg.style.display='block';
+        msg.textContent='Mohon lengkapi semua kolom yang wajib.';
+        msg.style.color='crimson';
+        return;
+      }
+
+      // validasi email
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+        msg.style.display='block';
+        msg.textContent='Format email tidak valid.';
+        msg.style.color='crimson';
+        return;
+      }
+
+      msg.style.display='block';
+      msg.textContent='Mengirim pendaftaran...';
+      msg.style.color = varColor('--green-700');
+
+      // simpan sebagai draft localStorage (opsional)
+      const payload = {
+        name, email, program, country, note,
+        time: new Date().toISOString()
+      };
+      let drafts = JSON.parse(localStorage.getItem('turats_reg')) || [];
+      drafts.push(payload);
+      localStorage.setItem('turats_reg', JSON.stringify(drafts));
+
+      // Buat pesan WhatsApp otomatis
+      const waMessage =
+        `Assalamu'alaikum, saya ingin mendaftar program Turats Academy:%0A%0A`
+        + `Nama: ${name}%0A`
+        + `Email: ${email}%0A`
+        + `Program: ${program}%0A`
+        + (country ? `Negara Domisili: ${country}%0A` : ``)
+        + (note ? `Catatan: ${note}%0A` : ``)
+        + `%0ATerima kasih.`;
+
+      // nomor tujuan
+      const waNumber = "6285880856341";
+
+      // buka whatsapp user
+      const waUrl = `https://wa.me/${waNumber}?text=${waMessage}`;
+
+      setTimeout(() => {
+        window.open(waUrl, "_blank"); // kirim ke WA
+        msg.textContent = 'Mengalihkan ke WhatsApp...';
+        msg.style.color = 'green';
+        form.reset();
+      }, 600);
+    });
+
+    function varColor(name){
+      return getComputedStyle(document.documentElement)
+        .getPropertyValue(name) || '#1b6b48';
+    }
+
+
+    // smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const target = this.getAttribute('href');
+        if(target.length>1){
+          e.preventDefault();
+          const el = document.querySelector(target);
+          if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+          // close mobile menu if open
+          if(mobileMenu.style.display !== 'none') mobileMenu.style.display='none';
+        }
+      });
+    });
+
+    // progressive enhancement: keyboard accessibility for mobile toggle
+    mobileToggle && mobileToggle.addEventListener('keydown', (e)=>{ if(e.key==='Enter') mobileToggle.click(); });
+
+    // tiny accessibility improvement: focus outline on keyboard
+    document.body.addEventListener('keydown', (e)=>{ if(e.key==='Tab') document.body.classList.add('show-focus'); }, {once:true});
+
+    // lazy load large images (logo) if supported
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.querySelectorAll('img').forEach(img=>{ if('loading' in HTMLImageElement.prototype) img.setAttribute('loading','lazy'); });
+    });
+
+  </script>
+
+</body>
+</html>
