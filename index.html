@@ -42,23 +42,79 @@
 
     .container{width:calc(100% - 40px);max-width:var(--max-width);margin:0 auto;padding:var(--content-padding)}
 
-    /* Header */
+    /* HEADER — MODE NORMAL (SAAT DI ATAS) */
     header.site-header{
-      position:sticky;top:0;z-index:60;background:linear-gradient(180deg, rgba(201, 235, 214, 0.2), rgba(201, 235, 214, 0.65));backdrop-filter: blur(4px);
-      border-bottom:1px solid rgba(15,77,54,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: linear-gradient(180deg, rgba(201,235,214,0.2), rgba(201,235,214,0.65));
+      backdrop-filter: blur(4px);
+      border-bottom: 1px solid rgba(15,77,54,0.05);
+      padding: 0;
+      transition: all 0.3s ease;
     }
-    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+
+    header.site-header.scrolled {
+      position: fixed; /* ganti sticky -> fixed */
+      top: 10px;       /* beri jarak kecil agar tampak floating kapsul */
+      left: 50%;
+      transform: translateX(-50%); /* pusatkan secara horizontal */
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(6px);
+      border: none;
+      border-radius: 50px;
+      padding: 0px 0px;
+      width: 92%;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      z-index: 100; /* pastikan selalu di atas konten */
+    }
+
+
+    /* WRAPPER DALAM */
+    .header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      transition: all 0.3s ease;
+    }
+
+    /* Supaya header mengecil sedikit saat mode kapsul */
+    header.site-header.scrolled .header-inner{
+      padding: 10px 0;
+    }
+
+    /* Brand */
     .brand{display:flex;align-items:center;gap:12px}
-    .brand img{width:56px;height:56px;object-fit:contain}
+    .brand img{width:56px;height:56px;object-fit:contain;transition:0.3s}
     .brand h1{font-size:18px;margin:0;color:var(--green-900);font-weight:700}
     .brand p{margin:0;font-size:12px;color:var(--muted)}
 
-    nav.main-nav{display:flex;align-items:center;gap:18px}
-    nav.main-nav a{font-weight:600;font-size:14px;padding:8px 10px;border-radius:8px}
-    nav.main-nav a:hover{background:linear-gradient(90deg,var(--green-400),var(--green-700));color:white}
+    /* Brand mengecil saat mode kapsul */
+    header.site-header.scrolled .brand img{
+      width:46px;
+      height:46px;
+    }
 
-    .cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,var(--green-700),var(--green-500));color:white;padding:10px 14px;border-radius:10px;font-weight:700}
+    /* NAV */
+    nav.main-nav{display:flex;align-items:center;gap:18px}
+    nav.main-nav a{
+      font-weight:600;font-size:14px;padding:8px 10px;border-radius:8px;
+      transition:0.25s;
+    }
+    nav.main-nav a:hover{
+      background:linear-gradient(90deg,var(--green-400),var(--green-700));
+      color:white;
+    }
+
+    /* CTA */
+    .cta{
+      display:inline-flex;align-items:center;gap:8px;
+      background:linear-gradient(90deg,var(--green-700),var(--green-500));
+      color:white;padding:10px 14px;border-radius:10px;font-weight:700;
+    }
     .cta:active{transform:translateY(1px)}
+
 
     /* Mobile menu */
     .mobile-toggle{display:none;background:transparent;border:0;padding:8px;border-radius:10px}
@@ -68,7 +124,7 @@
     .hero{padding:44px 0 20px;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
     .hero-left h2{font-size:28px;margin:0 0 12px;color:var(--green-900);line-height:1.05}
     .hero-left p.lead{margin:0 0 18px;color:#445;max-width:60ch}
-    .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+    .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
     .btn-outline{border:2px solid var(--green-700);padding:10px 14px;border-radius:10px;font-weight:700}
 
     .feature-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}
@@ -286,7 +342,7 @@
 </head>
 <body>
 
-  <header class="site-header">
+  <header class="site-header" id="mainHeader">
     <div class="container header-inner">
       <div class="brand">
         <!-- Ganti src ke nama file logo yang tersedia (misal: turost logo.png) -->
@@ -576,6 +632,18 @@
 
   <!-- JavaScript: interaksi UI -->
   <script>
+
+    const header = document.getElementById("mainHeader");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 20) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+
+
     // basic utilities
     const q = s => document.querySelector(s);
     const qa = s => document.querySelectorAll(s);
@@ -656,14 +724,22 @@
       localStorage.setItem('turats_reg', JSON.stringify(drafts));
 
       // Buat pesan WhatsApp otomatis
-      const waMessage =
-        `Assalamu'alaikum, saya ingin mendaftar program Turats Academy:%0A%0A`
-        + `Nama: ${name}%0A`
-        + `Email: ${email}%0A`
-        + `Program: ${program}%0A`
-        + (country ? `Negara Domisili: ${country}%0A` : ``)
-        + (note ? `Catatan: ${note}%0A` : ``)
-        + `%0ATerima kasih.`;
+    const waMessage =
+      `Assalamu'alaikum warahmatullahi wabarakatuh.%0A` +
+      `Saya ingin mendaftar program di *Turats Academy*. Berikut data saya:%0A%0A` +
+
+      `• *Nama*: ${name}%0A` +
+      `• *Email*: ${email}%0A` +
+      `• *Program yang dipilih*: ${program}%0A` +
+      (country ? `• *Domisili*: ${country}%0A` : ``) +
+      (note ? `• *Catatan tambahan*: ${note}%0A` : ``) +
+
+      `%0A` +
+      `Mohon diinformasikan langkah pendaftaran selanjutnya.%0A` +
+      `Jazakumullahu khairan, terima kasih.` +
+      `%0A%0A` +
+      `- _Calon Peserta Turats Academy_`;
+
 
       // nomor tujuan
       const waNumber = "6285880856341";
