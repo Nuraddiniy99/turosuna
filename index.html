@@ -4,31 +4,31 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Turosuna.id</title>
-  
-    <!-- 🔹 Favicon -->
-    <link rel="icon" type="image/png" href="asset/logo.png" />
-  
-    <!-- 🔹 Open Graph / WhatsApp Thumbnail -->
-    <meta property="og:title" content="Turosuna.id - Turots Academy" />
-    <meta property="og:description" content="Platform pengajaran al-Qur'an dan ilmu-ilmu keislaman klasik & kontemporer." />
-  
-    <!-- 🔹 Thumbnail khusus WhatsApp -->
-    <meta property="og:image" content="https://i.ibb.co/G3HLSXFH/bg.png" />
-    <meta property="og:image:secure_url" content="https://i.ibb.co/G3HLSXFH/bg.png" />
-    <meta property="og:image:type" content="image/png" />
-  
-    <!-- 🔹 Ukuran disesuaikan untuk gambar landscape (16:9) -->
-    <meta property="og:image:width" content="1280" />
-    <meta property="og:image:height" content="720" />
-  
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://nuraddiniy99.github.io/turosuna/" />
-  
-    <!-- 🔹 Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Turosuna.id - Turots Academy" />
-    <meta name="twitter:description" content="Platform pengajaran al-Qur'an dan ilmu-ilmu keislaman klasik & kontemporer." />
-    <meta name="twitter:image" content="https://i.ibb.co/G3HLSXFH/bg.png" />
+
+  <!-- 🔹 Favicon -->
+  <link rel="icon" type="image/png" href="asset/logo.png" />
+
+  <!-- 🔹 Open Graph / WhatsApp Thumbnail -->
+  <meta property="og:title" content="Turosuna.id - Turots Academy" />
+  <meta property="og:description" content="Platform pengajaran al-Qur'an dan ilmu-ilmu keislaman klasik & kontemporer." />
+
+  <!-- 🔹 Thumbnail khusus WhatsApp -->
+  <meta property="og:image" content="https://i.ibb.co/G3HLSXFH/bg.png" />
+  <meta property="og:image:secure_url" content="https://i.ibb.co/G3HLSXFH/bg.png" />
+  <meta property="og:image:type" content="image/png" />
+
+  <!-- 🔹 Ukuran disesuaikan untuk gambar landscape (16:9) -->
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="720" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nuraddiniy99.github.io/turosuna/" />
+
+  <!-- 🔹 Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Turosuna.id - Turots Academy" />
+  <meta name="twitter:description" content="Platform pengajaran al-Qur'an dan ilmu-ilmu keislaman klasik & kontemporer." />
+  <meta name="twitter:image" content="https://i.ibb.co/G3HLSXFH/bg.png" />
 
   <!-- Primary theme colors (ambil dari logo) -->
   <style>
@@ -144,6 +144,152 @@
     .mobile-toggle{display:none;background:transparent;border:0;padding:8px;border-radius:10px}
     .mobile-toggle svg{width:26px;height:26px}
 
+    /* ===== Customer Service Floating Button & Popup ===== */
+    .cs-container {
+      position: fixed;
+      right: 15px;
+      bottom: 10px;
+      z-index: 200;
+      font-family: var(--font-sans);
+    }
+
+    .cs-button {
+      width: 60px;
+      height: 60px;
+      background: transparent;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      backdrop-filter: blur(1px);
+      transition: transform 0.2s;
+    }
+
+    .cs-button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Backdrop (background blur saat popup) */
+    .cs-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+      z-index: 190;
+    }
+
+    /* Popup Card */
+    .cs-popup {
+      position: fixed;
+      right: 20px;
+      bottom: 90px; /* di atas tombol CS */
+      width: 280px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      padding: 16px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 200;
+    }
+
+    /* Saat popup aktif */
+    .cs-container.active .cs-backdrop {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cs-container.active .cs-popup {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* Header popup */
+    .cs-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .cs-header h4 {
+      margin: 0;
+      font-size: 16px;
+      color: var(--green-900);
+    }
+
+    .cs-close {
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--green-900);
+    }
+
+    /* Body popup */
+    .cs-body p {
+      margin: 8px 0;
+      font-size: 14px;
+      color: var(--green-900);
+    }
+
+    .cs-body a {
+      color: var(--green-700);
+      text-decoration: none;
+    }
+    .cs-body a:hover {
+      text-decoration: underline;
+    }
+
+    /* Tombol interaktif di popup */
+    .cs-action {
+      width: 100%;
+      padding: 10px 0;
+      margin: 6px 0;
+      border: none;
+      border-radius: 12px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* Warna & hover untuk tombol Email */
+    .cs-email {
+      background: linear-gradient(90deg, #3b82f6, #2563eb); /* hijau gradasi */
+      color: white;
+    }
+    .cs-email:hover {
+      background: linear-gradient(90deg, #2563eb, #3b82f6);
+      transform: scale(1.03);
+    }
+
+    /* Warna & hover untuk tombol WhatsApp */
+    .cs-whatsapp {
+      background: linear-gradient(90deg, #4ade80, #16a34a); /* biru gradasi */
+      color: white;
+    }
+    .cs-whatsapp:hover {
+      background: linear-gradient(90deg, #16a34a, #22c55e);
+      transform: scale(1.03);
+    }
+    /* ===== End Customer Service ===== */
+
     /* Hero */
     .hero{padding:44px 0 20px;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
     .hero-left h2{font-size:28px;margin:0 0 12px;color:var(--green-900);line-height:1.05}
@@ -158,7 +304,7 @@
 
     /* Hero right (logo area) */
     .hero-right{display:flex;flex-direction:column;align-items:center;gap:8px}
-    .logo-plate{width:100%;max-width:380px;padding:18px;border-radius:14px;background:linear-gradient(0deg, rgba(59,138,95,0.08), rgba(27,107,72,0.03));display:flex;justify-content:center;align-items:center}
+    .logo-plate{width:100%;max-width:380px;padding:18px;border-radius:14px;background: transparent;display:flex;justify-content:center;align-items:center}
     .logo-plate img{width:88%;height:auto}
 
     /* Sections */
@@ -169,9 +315,112 @@
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .box{background:white;padding:18px;border-radius:12px;box-shadow:0 6px 20px rgba(15,77,54,0.03);border:1px solid rgba(15,77,54,0.03)}
 
-    /* Curriculum list */
-    .curriculum ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
-    .curriculum li{padding:10px;border-radius:10px;background:linear-gradient(90deg, rgba(59,138,95,0.03), rgba(27,107,72,0.01));border:1px dashed rgba(15,77,54,0.04)}
+    /* ----- CAROUSEL WRAPPER ----- */
+    /* ===== CAROUSEL NEW FIXED VERSION ===== */
+    .program-section {
+      margin-top: 0;
+    }
+
+    .carousel-wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .carousel-container {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+
+      /* BIAR CARD SELALU CENTER */
+      scroll-snap-type: x mandatory;
+
+      padding: 10px 0;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* CARD */
+    .carousel-card {
+      flex: 0 0 85%;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      overflow: hidden;
+      scroll-snap-align: center; /* ⬅ kunci agar selalu center */
+      transition: 0.25s ease;
+    }
+
+    .carousel-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .carousel-card img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+
+    /* BODY */
+    .carousel-body {
+      padding: 16px;
+    }
+
+    .carousel-body h4 {
+      margin: 0 0 8px;
+    }
+
+    /* BUTTON */
+    .carousel-btn {
+      background: linear-gradient(90deg, var(--green-700), var(--green-500));
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* DOTS */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .carousel-dots div {
+      width: 8px;
+      height: 8px;
+      background: #bbb;
+      border-radius: 50%;
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
+
+    .carousel-dots .active {
+      width: 22px;
+      border-radius: 20px;
+      background: var(--green-700);
+    }
+
+    /* Desktop tampil 3 card */
+    @media (min-width: 900px) {
+      .carousel-card {
+        flex: 0 0 calc(33.333% - 16px);
+        scroll-snap-align: start; /* desktop lebih natural */
+      }
+    }
+
+
 
     /* FAQ / Accordion */
     .accordion .item {
@@ -230,7 +479,7 @@
 
 
     .site-footer {
-      background:#0f4d36;
+      background: linear-gradient(140deg, rgba(0, 129, 73, 0.98), rgba(0, 52, 30, 0.9));
       color:#eee;
       padding:40px 20px 20px;
       margin-top:40px;
@@ -358,7 +607,7 @@
 
     /* Utility */
     .center{text-align:center}
-    .small{font-size:13px;color:var(--muted)}
+    .small{font-size:13px;color: rgb(112, 112, 112)}
   </style>
 
   <!-- Google fonts (progressive enhancement) -->
@@ -400,6 +649,28 @@
       </div>
     </div>
   </header>
+
+  <!-- Customer Service Button & Popup -->
+    <div class="cs-container">
+    <button class="cs-button" id="csButton">
+      <img src="asset/cs.png" alt="Customer Service" />
+    </button>
+      <div class="cs-backdrop" id="csBackdrop"></div>
+      <div class="cs-popup" id="csPopup">
+        <div class="cs-header">
+          <h4>Hubungi Customer Service</h4>
+          <button class="cs-close" id="csClose">&times;</button>
+        </div>
+        <div class="cs-body">
+          <button class="cs-action cs-email" onclick="window.location.href='mailto:turosuna.id@gmail.com'">
+            📧 Via Email
+          </button>
+          <button class="cs-action cs-whatsapp" onclick="window.open('https://wa.me/6285880856341', '_blank')">
+            💬 Via WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
 
   <main>
     <section class="hero">
@@ -478,38 +749,96 @@
     </section>
 
 
-    <section id="kurikulum" class="container curriculum">
-      <h3>Kurikulum & Program</h3>
-      <p class="muted">Program disusun dalam beberapa jalur: Tajwid & Tilawah, Ilmu Tajwid Praktis, Tafsir Tematik, Ushul Fiqh, Nahwu-Sarf, Hadis & Metodologi, serta Khatabah & Dakwah.</p>
+    <section id="kurikulum" class="program-section">
+      <div class="container">
+        <h3 style="text-align: center">Program kami</h3>
+        <p class="muted; text-align: center">Rancangan pembelajaran Al quran, ilmiah & turats klasik.</p>
 
-      <div style="margin-top:12px" class="grid-3">
-        <div class="box fade-in">
-          <h4>Jalur Al-Qur'an</h4>
-          <ul>
-            <li>Program Tajwid Lengkap (tingkat dasar sampai hafalan)</li>
-            <li>Kelas Tilawah dan Muraja'ah Sanad</li>
-            <li>Kajian Tafsir Tematik (topikal sesuai kebutuhan)</li>
-          </ul>
+        <div class="carousel-wrapper">
+          <div class="carousel-container">
+            <div class="carousel-track" id="carouselTrack">
+
+              <!-- CARD 1 -->
+              <div class="carousel-card">
+                <img src="asset/bg.png" alt="">
+                <div class="carousel-body">
+                  <h4>Basic Arabic</h4>
+                  <p>Pondasi bahasa Arab modern & turats.</p>
+                  <button class="carousel-btn">Pelajari</button>
+                </div>
+              </div>
+
+              <!-- CARD 2 -->
+              <div class="carousel-card">
+                <img src="asset/bg.png" alt="">
+                <div class="carousel-body">
+                  <h4>Al-Qur'an</h4>
+                  <p>Metode talaqqi & bacaan bersanad.</p>
+                  <button class="carousel-btn">Pelajari</button>
+                </div>
+              </div>
+
+              <!-- CARD 3 -->
+              <div class="carousel-card">
+                <img src="asset/bg.png" alt="">
+                <div class="carousel-body">
+                  <h4>Turats Fikih</h4>
+                  <p>Mengkaji kitab klasik dengan manhaj benar.</p>
+                  <button class="carousel-btn">Pelajari</button>
+                </div>
+              </div>
+
+              <!-- CARD 4 -->
+              <div class="carousel-card">
+                <img src="asset/bg.png" alt="">
+                <div class="carousel-body">
+                  <h4>Basic Arabic</h4>
+                  <p>Pondasi bahasa Arab modern & turats.</p>
+                  <button class="carousel-btn">Pelajari</button>
+                </div>
+              </div>
+
+              <!-- CARD 5 -->
+              <div class="carousel-card">
+                <img src="asset/bg.png" alt="">
+                <div class="carousel-body">
+                  <h4>Basic Arabic</h4>
+                  <p>Pondasi bahasa Arab modern & turats.</p>
+                  <button class="carousel-btn">Pelajari</button>
+                </div>
+              </div>
+
+              <!-- CARD 6 -->
+              <div class="carousel-card">
+                <img src="asset/bg.png" alt="">
+                <div class="carousel-body">
+                  <h4>Basic Arabic</h4>
+                  <p>Pondasi bahasa Arab modern & turats.</p>
+                  <button class="carousel-btn">Pelajari</button>
+                </div>
+              </div>
+
+              <!-- CARD 7 -->
+              <div class="carousel-card">
+                <img src="asset/bg.png" alt="">
+                <div class="carousel-body">
+                  <h4>Basic Arabic</h4>
+                  <p>Pondasi bahasa Arab modern & turats.</p>
+                  <button class="carousel-btn">Pelajari</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="carousel-dots" id="carouselDots"></div>
         </div>
-        <div class="box fade-in">
-          <h4>Ilmu Ushul & Fiqh</h4>
-          <ul>
-            <li>Pengenalan Ushul Fiqh</li>
-            <li>Kajian Kitab Mukhtasar dan Syarh</li>
-            <li>Fiqh Kontemporer & Aplikasi</li>
-          </ul>
-        </div>
-        <div class="box fade-in">
-          <h4>Bahasa Arab & Kitab Klasik</h4>
-          <ul>
-            <li>Nahwu & Sharf sistematis</li>
-            <li>Tahsin baca kitab klasik</li>
-            <li>Methodologi & sanad pengajaran</li>
-          </ul>
-        </div>
+
       </div>
+    </section>
 
-      <div style="margin-top:16px" class="box fade-in">
+    <section class="container">
+      <div style="margin-top:-30px" class="box fade-in">
         <h4>Format Pembelajaran</h4>
         <p class="small">Setiap kelas dilengkapi dengan materi PDF, rekaman video, sesi tanya jawab (live), dan evaluasi berkala. Peserta mendapatkan sertifikat dan rekomendasi lanjutan untuk jenjang yang lebih tinggi.</p>
       </div>
@@ -521,7 +850,7 @@
 
       <div class="grid-pengajar" style="margin-top:12px">
         <div class="box teacher fade-in">
-          <img src="https://placehold.co/120x120?text=Ust+1" alt="Ustadz 1">
+          <img src="asset/rizki.jpg" alt="Ustadz 1">
           <div>
             <strong>Ustadz Taufan, Lc., MA.</strong>
             <p class="small" style="margin-top:6px">Hadis dan Ushul Hadis — Lulusan S2 Al Azhar</p>
@@ -529,7 +858,7 @@
         </div>
 
         <div class="box teacher fade-in">
-          <img src="https://placehold.co/120x120?text=Ust+2" alt="Ustadzah 2">
+          <img src="asset/bg.png" alt="Ustadzah 2">
           <div>
             <strong>Ustadz Royhan Aziz, Lc.</strong>
             <p class="small" style="margin-top:6px">Tajwid & Metodologi Pengajaran — Alumni Al-Azhar</p>
@@ -537,7 +866,7 @@
         </div>
 
         <div class="box teacher fade-in">
-          <img src="https://placehold.co/120x120?text=Ust+1" alt="Ustadz 3">
+          <img src="asset/bg.png" alt="Ustadz 3">
           <div>
             <strong>Ustadz Dzakky, Lc.</strong>
             <p class="small" style="margin-top:6px">Tafsir & Ushul Fiqh — Alumni Al-Azhar</p>
@@ -545,7 +874,7 @@
         </div>
 
         <div class="box teacher fade-in">
-          <img src="https://placehold.co/120x120?text=Ust+2" alt="Ustadzah 3">
+          <img src="asset/bg.png" alt="Ustadzah 3">
           <div>
             <strong>Ustadz Aliyuddin, Lc. Dipl.</strong>
             <p class="small" style="margin-top:6px">Ilmu Kalam dan Filsafat — Mahasiswa S2 Al-Azhar</p>
@@ -580,8 +909,8 @@
     <section id="contact" class="container">
       <h3>Daftar & Kontak</h3>
       <div class="contact-grid">
-        <div class="box fade-in">
-          <p class="small">Isi formulir pendaftaran singkat di bawah. Setelah pendaftaran, tim kami akan menghubungi Anda melalui email/WA untuk langkah selanjutnya (tes penempatan, jadwal, dan metode pembayaran).</p>
+        <div class="box fade-in" style="box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+          <p class="small">Isi formulir berikut. Setelah pendaftaran, tim kami akan menghubungi Anda melalui email/WA untuk langkah selanjutnya.</p>
 
           <form id="contactForm" autocomplete="on">
             <input type="text" id="name" name="name" placeholder="Nama lengkap" required>
@@ -618,7 +947,7 @@
       <!-- ABOUT -->
       <div class="footer-col">
         <h4>About Us</h4>
-        <p class="small">
+        <p class="small" style="color: rgb(205, 205, 205);">
           Turasuna.id — Turats Academy adalah platform belajar berbasis turats
           dengan pendekatan sanad, metodologi, dan kontekstual. Fokus pada
           pengajaran yang berkualitas dan terarah.
@@ -683,6 +1012,67 @@
       mobileMenu.style.display = isOpen ? 'none' : 'block';
       mobileToggle.setAttribute('aria-expanded', String(!isOpen));
     });
+
+    // customer service popup
+    document.addEventListener("DOMContentLoaded", function() {
+      const csButton = document.getElementById("csButton");
+      const csClose = document.getElementById("csClose");
+      const csContainer = document.querySelector(".cs-container");
+      const csBackdrop = document.getElementById("csBackdrop");
+
+      function openPopup() {
+        csContainer.classList.add("active");
+      }
+
+      function closePopup() {
+        csContainer.classList.remove("active");
+      }
+
+      csButton.addEventListener("click", openPopup);
+      csClose.addEventListener("click", closePopup);
+      csBackdrop.addEventListener("click", closePopup);
+    });
+    // end customer service popup
+
+      const track = document.getElementById("carouselTrack");
+      const dotsContainer = document.getElementById("carouselDots");
+      const cards = Array.from(track.children);
+
+      // Buat dots sesuai jumlah card
+      cards.forEach((_, i) => {
+        const dot = document.createElement("div");
+        if (i === 0) dot.classList.add("active");
+        dotsContainer.appendChild(dot);
+      });
+
+      const dots = Array.from(dotsContainer.children);
+
+      // Klik dots → pindah slide
+      dots.forEach((dot, i) => {
+        dot.addEventListener("click", () => {
+          cards[i].scrollIntoView({ behavior: "smooth", inline: "center" });
+        });
+      });
+
+      // Update dot saat scroll
+      track.addEventListener("scroll", () => {
+        let activeIndex = 0;
+
+        cards.forEach((card, i) => {
+          const rect = card.getBoundingClientRect();
+          const center = Math.abs(rect.left + rect.width / 2 - window.innerWidth / 2);
+          if (center < Math.abs(cards[activeIndex].getBoundingClientRect().left +
+              cards[activeIndex].getBoundingClientRect().width / 2 - window.innerWidth / 2)) {
+            activeIndex = i;
+          }
+        });
+
+        dots.forEach(dot => dot.classList.remove("active"));
+        dots[activeIndex].classList.add("active");
+      });
+
+
+
 
     // scroll reveal simple
     const observer = new IntersectionObserver((entries)=>{
@@ -814,6 +1204,3 @@
 
 </body>
 </html>
-
-
-
